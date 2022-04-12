@@ -1,0 +1,33 @@
+class Node :
+    def __init__(self,val):
+        self.left = None 
+        self.right = None 
+        self.val = val 
+def isleafnode(root):
+    if root == None :
+        return False 
+    if root.left == None and root.right == None :
+        return True 
+    return False
+def leftleafsum(root):
+    if root == None :
+        return 0
+    res = 0
+    if root != None :
+            if isleafnode(root.left):
+                res += root.left.val
+            else:
+                res += leftleafsum(root.left)
+            res += leftleafsum(root.right)
+    return res 
+root = Node(9)
+root.left = Node(8)
+root.left.left = Node(5)
+root.left.right = Node(2)
+root.left.right.left = Node(3)
+root.right = Node(6)
+root.right.left = Node(1)
+print(leftleafsum(root))
+
+        
+
